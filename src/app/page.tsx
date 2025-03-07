@@ -1,100 +1,147 @@
-import Image from "next/image";
+"use client";
+import React from "react";
+import { FaLinkedin, FaGithub, FaEnvelope, FaDownload } from "react-icons/fa";
+import "animate.css";
+import "@fontsource/poppins";
+import Link from "next/link";
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+  const socialLinks = [
+    { icon: <FaEnvelope />, link: "mailto:juanpi.fogliaco.freelance@gmail.com" },
+    { icon: <FaLinkedin />, link: "https://www.linkedin.com/in/juan-pablo-fogliaco-b28054194/" },
+    { icon: <FaGithub />, link: "https://github.com/JuanpiiFogliacoTech" },
+  ];
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+  const handleDownload = () => {
+    const link = document.createElement("a");
+    link.href = "./CV_Juan_Pablo_Fogliaco_ES.pdf"; // Asegúrate de colocar tu archivo en la carpeta "public"
+    link.download = "Juan_Pablo_Fogliaco_CV.pdf";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
+  return (
+    <div className="bg-gradient-to-r from-blue-100 via-white to-blue-300 text-gray-900 min-h-screen flex flex-col items-center font-[Poppins]">
+      {/* Hero Section */}
+      <header className="flex flex-col items-center justify-center text-center py-20 px-4">
+        <h1 className="text-5xl md:text-7xl font-bold animate__animated animate__fadeInDown text-blue-800">
+          Juan Pablo Fogliaco
+        </h1>
+        <p className="text-lg md:text-2xl mt-4 animate__animated animate__fadeIn animate__delay-1s text-blue-600">
+          Technical Team Lead - Software Engineer
+        </p>
+        <p className="text-blue-500 mt-2 animate__animated animate__fadeIn animate__delay-1s">
+          Uruguay, Maldonado, Piriápolis - Cel: +598 9727 4330
+        </p>
+        <button
+          onClick={handleDownload}
+          className="cursor-pointer mt-6 px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 flex items-center gap-2 transition-transform transform hover:scale-105 animate__animated animate__fadeIn animate__delay-1s"
+        >
+          <FaDownload /> Descargar CV
+        </button>
+      </header>
+
+      {/* Sobre Mí */}
+      <section className="max-w-3xl mx-auto text-gray-700 animate__animated animate__fadeInUp animate__delay-2s bg-white p-6 rounded-lg shadow-lg border border-blue-300">
+        <h2 className="text-3xl font-semibold text-center mb-6 text-blue-700">
+          Sobre Mí
+        </h2>
+        <p>
+          Desde 2017, comencé mi camino en la programación de manera
+          autodidacta, explorando HTML, CSS y JavaScript a través de cursos en
+          línea. Motivado por mi interés, estudié un año de Ingeniería en
+          Informática en la{" "}
+          <Link className="italic" href="https://www.frd.utn.edu.ar/">
+            UTN
+          </Link>{" "}
+          y luego cursé tres años de Analista en Informática en la{" "}
+          <Link className="italic" href="https://www.unsada.edu.ar">
+            UNSADA
+          </Link>
+          .
+        </p>
+        <p className="mt-4">
+          Paralelamente, profundicé en desarrollo web con tecnologías como
+          React.js, Node.js, Express, NestJS y MySQL, formándome en plataformas
+          como Udemy y Platzi. Hasta 2020/2021, complementé mi aprendizaje con
+          proyectos freelance y trabajo en equipo, fortaleciendo mi experiencia
+          en el mundo profesional del desarrollo web y en mi formación
+          profesional de IT.
+        </p>
+      </section>
+
+      {/* Experiencia */}
+      <section className="max-w-5xl mx-auto px-6 py-32 text-gray-800 animate__animated animate__fadeInUp animate__delay-4s">
+        <h2 className="text-3xl font-semibold text-center mb-6 text-blue-800">
+          Experiencia
+        </h2>
+        <div className="space-y-6">
+          <div className="bg-white p-6 rounded-lg shadow-lg border border-blue-400">
+            <Link href="https://www.interbanking.com">
+              <h3 className="text-xl font-semibold text-blue-700">
+                Interbanking SA (2022 - Actualidad)
+              </h3>
+            </Link>
+            <p className="italic">Technical Team Lead End to End</p>
+            <ul className="list-disc list-inside mt-2 space-y-2 text-gray-700">
+              <li>
+                Planificación estratégica y alineación con objetivos de negocio.
+              </li>
+              <li>
+                Análisis y diseño técnico en colaboración con Product Owners,
+                UX/UI y Business Analysts.
+              </li>
+              <li>Gestión y mentoría de equipos de desarrollo.</li>
+              <li>Priorización y resolución de incidentes en producción.</li>
+              <li>Desarrollo de frontend en React y BFFs con Nest.js.</li>
+            </ul>
+          </div>
+          <div className="bg-white p-6 rounded-lg shadow-lg border border-blue-400">
+            <Link href="https://www.recursiva.com">
+              <h3 className="text-xl font-semibold text-blue-700">
+                Recursiva SA (2020 - 2022)
+              </h3>
+            </Link>
+
+            <p className="italic">
+              Developer Fullstack SSR - Technical Team Lead
+            </p>
+            <p className="font-semibold text-sm mt-2">¿En que trabaje?</p>
+            <ul className="list-disc list-inside mt-2 space-y-2 text-gray-700">
+              <li>
+                Proyecto GDM: Desarrollo y mantenimiento en Next.js y PHP.
+              </li>
+              <li>
+                Proyecto TotalCoin: Rediseño del frontend en React Native.
+              </li>
+              <li>
+                Proyecto AiraSystem: Creación de un motor de riesgos desde cero
+                con React.js, Node.js y MySQL.
+              </li>
+              <li>
+                Proyecto Coca-Cola Andina-Chile: Diseño y desarrollo de la
+                arquitectura front end para un carro de compras.
+              </li>
+            </ul>
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
+      </section>
+
+      {/* Contacto */}
+      <footer className="text-center py-12 animate__animated animate__fadeInUp animate__delay-6s">
+        <h2 className="text-2xl font-semibold text-blue-800">Contacto</h2>
+        <div className="flex justify-center space-x-6 mt-4">
+          {socialLinks.map((item, index) => (
+            <a
+              key={index}
+              href={item.link}
+              className="text-blue-500 hover:text-blue-700 text-2xl transition-transform transform hover:scale-110 animate__animated animate__pulse animate__infinite"
+            >
+              {item.icon}
+            </a>
+          ))}
+        </div>
       </footer>
     </div>
   );
